@@ -10,6 +10,13 @@ namespace SednaReservationAPI.Application.Features.Queries.Customer.GetAllCustom
 {
     public class GetAllCustomerQueryHandler : IRequestHandler<GetAllCustomerQueryRequest, GetAllCustomerQueryResponse>
     {
+        ICustomerReadRepository _customerReadRepository;
+
+        public GetAllCustomerQueryHandler(ICustomerReadRepository customerReadRepository)
+        {
+            _customerReadRepository = customerReadRepository;
+        }
+
         public Task<GetAllCustomerQueryResponse> Handle(GetAllCustomerQueryRequest request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

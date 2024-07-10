@@ -247,6 +247,9 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -257,6 +260,9 @@ namespace SednaReservationAPI.Persistence.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -274,6 +280,9 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");

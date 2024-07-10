@@ -10,9 +10,9 @@ namespace SednaReservationAPI.Application
 {
     public static class ServiceRegistiration
     {
-        public static void AddApplicationServices(this IServiceCollection collection)
+        public static void AddApplicationServices(this IServiceCollection services)
         {
-            collection.AddMediatR(typeof(ServiceRegistiration));
+            services.AddMediatR(typeof(ServiceRegistiration));
         }
     }
 }

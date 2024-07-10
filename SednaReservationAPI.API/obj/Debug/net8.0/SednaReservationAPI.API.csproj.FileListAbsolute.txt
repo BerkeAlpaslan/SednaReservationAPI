@@ -120,3 +120,13 @@ C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservation
 C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\SednaReservationAPI.Infrastructure.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\SednaReservationAPI.API\bin\Debug\net8.0\SednaReservationAPI.Infrastructure.pdb

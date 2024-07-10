@@ -12,8 +12,8 @@ using SednaReservationAPI.Persistence.Contexts;
 namespace SednaReservationAPI.Persistence.Migrations
 {
     [DbContext(typeof(SednaReservationAPIDbContext))]
-    [Migration("20240709124424_mig_2")]
-    partial class mig_2
+    [Migration("20240710072835_mig_1")]
+    partial class mig_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,6 +250,9 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -260,6 +263,9 @@ namespace SednaReservationAPI.Persistence.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -277,6 +283,9 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");

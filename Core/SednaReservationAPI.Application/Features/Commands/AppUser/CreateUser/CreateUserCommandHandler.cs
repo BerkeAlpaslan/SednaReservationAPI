@@ -23,6 +23,7 @@ namespace SednaReservationAPI.Application.Features.Commands.AppUser.CreateAppUse
             IdentityResult result = await _userManager.CreateAsync(new()
             {
                 Id = Guid.NewGuid().ToString(),
+                UserName = request.UserName,
                 Name = request.Name,
                 Email = request.Email,
                 PhoneNumber = request.Phone,
