@@ -9,5 +9,6 @@ namespace SednaReservationAPI.Application.Features.Queries.Customer.GetByIdCusto
 {
     public class GetByIdCustomerQueryRequest : IRequest<GetByIdCustomerQueryResponse>
     {
+        public string? Id { get; set; }
     }
 }

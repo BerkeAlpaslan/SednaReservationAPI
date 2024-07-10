@@ -10,3 +10,4 @@ C:\Users\berke\Documents\Internship Project\SednaReservationAPI\Core\SednaReserv
 C:\Users\berke\Documents\Internship Project\SednaReservationAPI\Core\SednaReservationAPI.Domain\obj\Debug\net8.0\refint\SednaReservationAPI.Domain.dll
 C:\Users\berke\Documents\Internship Project\SednaReservationAPI\Core\SednaReservationAPI.Domain\obj\Debug\net8.0\SednaReservationAPI.Domain.pdb
 C:\Users\berke\Documents\Internship Project\SednaReservationAPI\Core\SednaReservationAPI.Domain\obj\Debug\net8.0\ref\SednaReservationAPI.Domain.dll
+C:\Users\berke\Documents\Internship Project\SednaReservationAPI\Core\SednaReservationAPI.Domain\obj\Debug\net8.0\SednaReservationAPI.Domain.csproj.AssemblyReference.cache

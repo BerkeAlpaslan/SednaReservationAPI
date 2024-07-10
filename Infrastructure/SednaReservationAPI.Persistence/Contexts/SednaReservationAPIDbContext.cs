@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SednaReservationAPI.Domain.Entities;
 using SednaReservationAPI.Domain.Entities.Common;
+using SednaReservationAPI.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SednaReservationAPI.Persistence.Contexts
 {
-    public class SednaReservationAPIDbContext : DbContext
+    public class SednaReservationAPIDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
         public SednaReservationAPIDbContext(DbContextOptions options) : base(options)
         {

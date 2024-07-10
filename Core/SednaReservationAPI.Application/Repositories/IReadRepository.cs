@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SednaReservationAPI.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
