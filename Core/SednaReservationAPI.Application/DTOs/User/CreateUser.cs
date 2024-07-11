@@ -8,6 +8,6 @@ namespace SednaReservationAPI.Application.DTOs.User
 {
     public class CreateUser
     {
-
+        public string UserName { get; set; }
     }
 }
