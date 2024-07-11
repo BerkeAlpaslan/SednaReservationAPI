@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SednaReservationAPI.Application.DTOs.User
 {
-    internal class CreateUser
+    public class CreateUser
     {
     }
 }
