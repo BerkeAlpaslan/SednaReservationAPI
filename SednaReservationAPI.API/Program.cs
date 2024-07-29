@@ -17,10 +17,10 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy => 
-    policy.WithOrigins("https://localhost:7171", "http://localhost:7171").AllowAnyHeader().AllowAnyMethod()
+    policy.WithOrigins("https://localhost:4200", "http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
 ));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer("Admin", options =>
+    .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new()
         {
@@ -49,7 +49,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 

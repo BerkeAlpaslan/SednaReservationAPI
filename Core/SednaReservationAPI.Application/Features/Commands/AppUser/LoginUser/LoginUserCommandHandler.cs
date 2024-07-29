@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using SednaReservationAPI.Application.Abstractions.Services;
 using SednaReservationAPI.Application.Abstractions.Token;
@@ -19,11 +20,17 @@ namespace SednaReservationAPI.Application.Features.Commands.AppUser.LoginUser
         public LoginUserCommandHandler(IAuthService authService)
         {
             _authService = authService;
+
+
         }
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            var token = await _authService.LoginAsync(request.UsernameOrEmail, request.Password, 5);
+            var token = await _authService.LoginAsync(request.UsernameOrEmail, request.Password, 1);
+
+            if (token != null) { 
+            
+            }
 
             return new LoginUserSuccessCommandResponse()
             {

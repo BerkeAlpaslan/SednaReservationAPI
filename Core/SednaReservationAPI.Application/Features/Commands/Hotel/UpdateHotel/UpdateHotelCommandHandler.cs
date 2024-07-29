@@ -31,7 +31,6 @@ namespace SednaReservationAPI.Application.Features.Commands.Hotel.UpdateHotel
             hotel.Email = request.Email;
             hotel.ImageUrl = request.ImageUrl;
             hotel.UpdatedDate = DateTime.UtcNow;
-
             await _hotelWriteRepository.SaveAsync();
             return new UpdateHotelCommandResponse();
         }

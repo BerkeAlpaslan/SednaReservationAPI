@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SednaReservationAPI.Application.DTOs.User;
 using SednaReservationAPI.Application.Repositories;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,28 @@ namespace SednaReservationAPI.Application.Features.Commands.Reservation.DeleteRe
 
         public async Task<DeleteReservationCommandResponse> Handle(DeleteReservationCommandRequest request, CancellationToken cancellationToken)
         {
-            await _reservationWriteRepository.RemoveAsync(request.Id);
-            await _reservationWriteRepository.SaveAsync();
-            return new();
+            try
+            {
+                // Rezervasyonu veritabanından kaldır
+                await _reservationWriteRepository.RemoveAsync(request.Id);
+                await _reservationWriteRepository.SaveAsync();
+
+                // Başarı mesajını oluştur
+                return new DeleteReservationCommandResponse
+                {
+                    Message = "Rezervasyon başarıyla iptal edildi.",
+                    Success = true
+                };
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda mesaj oluştur
+                return new DeleteReservationCommandResponse
+                {
+                    Message = $"Rezervasyon iptali sırasında bir hata oluştu: {ex.Message}",
+                    Success = false
+                };
+            }
         }
     }
 }

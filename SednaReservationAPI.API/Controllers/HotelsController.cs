@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using SednaReservationAPI.Application.Features.Commands.Hotel.DeleteHotel;
 using SednaReservationAPI.Application.Features.Commands.Hotel.UpdateHotel;
 using SednaReservationAPI.Application.Features.Queries.Hotel.GetAllHotel;
 using SednaReservationAPI.Application.Features.Queries.Hotel.GetByIdHotel;
+using SednaReservationAPI.Application.Features.Queries.Hotel.GetUserByIdHotel;
 using SednaReservationAPI.Application.Repositories;
 
 namespace SednaReservationAPI.API.Controllers
@@ -25,14 +27,13 @@ namespace SednaReservationAPI.API.Controllers
             _hotelWriteRepository = hotelWriteRepository;
             _mediator = mediator;
         }
-
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] GetAllHotelQueryRequest getAllHotelQueryRequest)
         {
             List<GetAllHotelQueryResponse> response = await _mediator.Send(getAllHotelQueryRequest);
             return Ok(response);
         }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdHotelQueryRequest getByIdHotelQueryRequest)
         {
@@ -58,6 +59,14 @@ namespace SednaReservationAPI.API.Controllers
         {
             UpdateHotelCommandResponse response = await _mediator.Send(updateHotelCommandRequest);
             return Ok(response);
+        }
+
+        [HttpGet("myHotels/{userId}")]
+        public async Task<IActionResult> getMyHotels([FromRoute] GetByAdminAllHotelQueryRequest getByAdminAllHotelQueryRequest)
+        {
+            List<GetByAdminAllHotelQueryResponse> response = await _mediator.Send(getByAdminAllHotelQueryRequest);
+            return Ok(response);
+
         }
     }
 }

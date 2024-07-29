@@ -14,7 +14,8 @@ namespace SednaReservationAPI.Application.DTOs.User
         public string? Password { get; set; }
         public string? PasswordConfirm { get; set; }
         public string? Phone { get; set; }
-        public int Age { get; set; }
-        public string? Gender { get; set; }
+        public string Age { get; set; }
+        public bool? Gender { get; set; }
+        public bool? IsAdmin { get; set; }
     }
 }

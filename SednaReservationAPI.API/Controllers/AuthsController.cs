@@ -24,8 +24,8 @@ namespace SednaReservationAPI.API.Controllers
             return Ok(loginUserCommandResponse);
         }
 
-        [HttpGet("[action]")]
-        public async Task<IActionResult> RefreshTokenLogin([FromForm]RefreshTokenCommandRequest refreshTokenCommandRequest)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> RefreshTokenLogin([FromBody]RefreshTokenCommandRequest refreshTokenCommandRequest)
         {
             RefreshTokenCommandResponse refreshTokenCommandResponse = await _mediator.Send(refreshTokenCommandRequest);
             return Ok(refreshTokenCommandResponse);

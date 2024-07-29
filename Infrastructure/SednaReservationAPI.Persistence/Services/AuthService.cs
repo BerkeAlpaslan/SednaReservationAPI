@@ -32,7 +32,7 @@ namespace SednaReservationAPI.Persistence.Services
 
         public async Task<Token> LoginAsync(string usernameOrEmail, string password, int accessTokenLifeTime)
         {
-            Domain.Entities.Identity.AppUser user = await _userManager.FindByNameAsync(usernameOrEmail);
+          Domain.Entities.Identity.AppUser user = await _userManager.FindByNameAsync(usernameOrEmail);
             if (user == null)
                 user = await _userManager.FindByEmailAsync(usernameOrEmail);
             if (user == null)
@@ -42,9 +42,37 @@ namespace SednaReservationAPI.Persistence.Services
 
             if (signInResult.Succeeded)
             {
+
                 Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime);
-                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 1);
-                return token;
+                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 60);
+
+                if (user.isAdmin == true)
+                {
+
+                    var response = new Application.DTOs.Token
+                    {
+
+
+                        Expiration = token.Expiration,
+                        AccessToken = token.AccessToken,
+                        RefreshToken = token.RefreshToken,
+                        userId = user.Id,
+                        isAdmin=user.isAdmin
+                    };
+
+                    return response;
+                }
+                var authResponse = new Application.DTOs.Token
+                {
+
+                    Expiration = token.Expiration,
+                    AccessToken = token.AccessToken,
+                    RefreshToken = token.RefreshToken,
+                    userId = user.Id,
+
+                };
+                return authResponse;
+
 
             }
             else
@@ -55,14 +83,57 @@ namespace SednaReservationAPI.Persistence.Services
         {
             AppUser? user = await _userManager.Users.FirstOrDefaultAsync(user => user.RefreshToken == refreshToken);
 
-            if (user != null && user?.RefreshTokenExpirationDate > DateTime.UtcNow)
-            {
-                Token token = _tokenHandler.CreateAccessToken(1);
-                _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 2);
-                return token;
+
+                if (user != null && user?.RefreshTokenExpirationDate > DateTime.UtcNow)
+                {
+                    Token token = _tokenHandler.CreateAccessToken(1);
+
+
+                try
+                {
+                    await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 50);
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine($"Error in RefreshTokenLoginAsync: {ex.Message}");
+                    throw;
+                }
+
+                if (user.isAdmin == true)
+                {
+                    var response = new Application.DTOs.Token
+                    {
+
+
+                        Expiration = token.Expiration,
+                        AccessToken = token.AccessToken,
+                        RefreshToken = token.RefreshToken,
+                        userId = user.Id,
+                        isAdmin = user.isAdmin
+                    };
+
+                    return response;
+                }
+                var authResponse = new Application.DTOs.Token
+                {
+
+                    Expiration = token.Expiration,
+                    AccessToken = token.AccessToken,
+                    RefreshToken = token.RefreshToken,
+                    userId = user.Id,
+
+                };
+                return authResponse;
             }
-            else
-                throw new NotFoundUserException();
+                else
+                    throw new NotFoundUserException();
+            
+    
+            
         }
+
+
+
     }
 }

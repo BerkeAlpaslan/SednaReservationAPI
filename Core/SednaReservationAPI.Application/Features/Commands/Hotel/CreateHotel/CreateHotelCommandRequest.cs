@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 namespace SednaReservationAPI.Application.Features.Commands.Hotel.CreateHotel
 {
     public class CreateHotelCommandRequest : IRequest<CreateHotelCommandResponse>
-    {
+    {   
+        public string userId { get; set; }
         public string? Name { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public string? Description { get; set; }
-        public int StarRating { get; set; }
-        public float Star {  get; set; }
+        public float StarRating { get; set; }
+        public int Star {  get; set; }
         public string? ImageUrl { get; set; }
     }
 }

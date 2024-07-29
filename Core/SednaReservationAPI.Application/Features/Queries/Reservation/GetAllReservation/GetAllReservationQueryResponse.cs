@@ -17,5 +17,6 @@ namespace SednaReservationAPI.Application.Features.Queries.Reservation.GetAllRes
         public DateTime CheckOut { get; set; }
         public decimal TotalPrice { get; set; }
         public string? Status { get; set; }
+        public bool? Deleted { get; set; }
     }
 }

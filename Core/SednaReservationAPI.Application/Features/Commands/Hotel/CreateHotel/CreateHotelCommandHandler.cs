@@ -23,14 +23,14 @@ namespace SednaReservationAPI.Application.Features.Commands.Hotel.CreateHotel
         public async Task<CreateHotelCommandResponse> Handle(CreateHotelCommandRequest request, CancellationToken cancellationToken)
         {
             await _hotelWriteRepository.AddAsync(new()
-            {
+            {   userId= request.userId,
                 Name = request.Name,
                 Address = request.Address,
                 Phone = request.Phone,
                 Email = request.Email,
                 Description = request.Description,
                 ImageUrl = request.ImageUrl,
-                Star = request.Star,
+                Star = request.Star
 
             });
 

@@ -20,18 +20,42 @@ namespace SednaReservationAPI.Application.Features.Commands.Reservation.UpdateRe
         }
         public async Task<UpdateReservationCommandResponse> Handle(UpdateReservationCommandRequest request, CancellationToken cancellationToken)
         {
-            Domain.Entities.Reservation reservation = await _reservationReadRepository.GetByIdAsync(request.Id);
 
-            reservation.UserId = request.UserId;
-            reservation.RoomId = request.RoomId;
-            reservation.HotelId = request.HotelId;
-            reservation.CheckIn = request.CheckIn;
-            reservation.CheckOut = request.CheckOut;
-            reservation.TotalPrice = request.TotalPrice;
-            reservation.Status = request.Status;
+            try
+            {
 
-            await _reservationWriteRepository.SaveAsync();
-            return new();
+                Domain.Entities.Reservation reservation = await _reservationReadRepository.GetByIdAsync(request.Id);
+
+                reservation.UserId = request.UserId;
+                reservation.RoomId = request.RoomId;
+                reservation.HotelId = request.HotelId;
+                reservation.CheckIn = request.CheckIn;
+                reservation.CheckOut = request.CheckOut;
+                reservation.TotalPrice = request.TotalPrice;
+                reservation.Status = request.Status;
+                if (reservation.Deleted != null)
+                {
+                    reservation.Deleted = request.Deleted;
+                }
+                await _reservationWriteRepository.SaveAsync();
+
+                return new UpdateReservationCommandResponse()
+                {
+                    Success = true,
+                    Message = ""
+                };
+
+            }
+
+            catch (Exception ex) {
+
+                return new UpdateReservationCommandResponse()
+                {
+                    Success = false,
+                    Message = $"Bir hata oluştur:  {ex.Message}"
+                };
+            }
+         
         }
     }
 }

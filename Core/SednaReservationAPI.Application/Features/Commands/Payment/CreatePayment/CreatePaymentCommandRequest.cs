@@ -9,7 +9,9 @@ namespace SednaReservationAPI.Application.Features.Commands.Payment.CreatePaymen
 {
     public class CreatePaymentCommandRequest : IRequest<CreatePaymentCommandResponse>
     {
-        public int ReservationId { get; set; }
+        public string ReservationId { get; set; }
+        public string HotelId { get; set; }
+        public string UserId { get; set; }
         public decimal Amount { get; set; }
         public string? Status { get; set; }
         public string? PaymentMethod { get; set; }

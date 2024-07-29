@@ -6,6 +6,8 @@ using SednaReservationAPI.Application.Features.Commands.Payment.DeletePayment;
 using SednaReservationAPI.Application.Features.Commands.Payment.UpdatePayment;
 using SednaReservationAPI.Application.Features.Queries.Payment.GetAllPayment;
 using SednaReservationAPI.Application.Features.Queries.Payment.GetByIdPayment;
+using SednaReservationAPI.Application.Features.Queries.Payment.GetPaymentByHotelId;
+using SednaReservationAPI.Application.Features.Queries.Payment.GetPaymentByUserId;
 using SednaReservationAPI.Application.Repositories;
 
 namespace SednaReservationAPI.API.Controllers
@@ -55,6 +57,19 @@ namespace SednaReservationAPI.API.Controllers
         public async Task<IActionResult> update([FromBody] UpdatePaymentCommandRequest updatePaymentCommandRequest)
         {
             UpdatePaymentCommandResponse response = await _mediator.Send(updatePaymentCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpGet("hotel/{hotelId}")]
+        public async Task<IActionResult> getPaymentHotelId([FromRoute] GetPaymentByHotelIdRequest getPaymentByHotelIdRequest)
+        {
+            List<GetPaymentByHotelIdResponse> response = await _mediator.Send(getPaymentByHotelIdRequest);
+            return Ok(response);
+        }
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> getUserId([FromRoute] GetPaymentByUserIdRequest getPaymentByUserlIdRequest)
+        {
+            List<GetPaymentByUserIdResponse> response = await _mediator.Send(getPaymentByUserlIdRequest);
             return Ok(response);
         }
     }

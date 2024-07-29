@@ -6,6 +6,7 @@ using SednaReservationAPI.Application.Features.Commands.Review.DeleteReview;
 using SednaReservationAPI.Application.Features.Commands.Review.UpdateReview;
 using SednaReservationAPI.Application.Features.Queries.Review.GetAllReview;
 using SednaReservationAPI.Application.Features.Queries.Review.GetByIdReview;
+using SednaReservationAPI.Application.Features.Queries.Review.GetReviewHotelById;
 using SednaReservationAPI.Application.Repositories;
 
 namespace SednaReservationAPI.API.Controllers
@@ -24,7 +25,6 @@ namespace SednaReservationAPI.API.Controllers
             _reservationWriteRepository = reservationWriteRepository;
             _mediator = mediator;
         }
-
         [HttpGet]
         public async Task<IActionResult> getReview([FromQuery] GetAllReviewQueryRequest getAllReviewQueryRequest)
         {
@@ -56,5 +56,13 @@ namespace SednaReservationAPI.API.Controllers
             UpdateReviewCommandResponse response = await _mediator.Send(updateReviewCommandRequest);
             return Ok(response);
         }
+        [HttpGet("comments/{HotelId}")]
+        public async Task<IActionResult> getReviewHotelById([FromRoute] GetReviewHotelByIdQueryRequest getReviewHotelByIdQueryRequest)
+        {
+            List<GetReviewHotelByIdQueryResponse> response = await _mediator.Send(getReviewHotelByIdQueryRequest);
+            return Ok(response);
+
+        }
+
     }
 }

@@ -12,5 +12,6 @@ namespace SednaReservationAPI.Application.Features.Commands.AppUser.LoginUser
     {
         public string? UsernameOrEmail { get; set; }
         public string? Password { get; set; }
+
     }
 }

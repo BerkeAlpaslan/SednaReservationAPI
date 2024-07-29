@@ -11,6 +11,11 @@ namespace SednaReservationAPI.Application.Abstractions.Services
     public interface IUserService
     {
         Task<CreateUserResponse> CreateAsync(CreateUser user);
-        Task UpdateRefreshToken(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessToken); 
+        Task UpdateRefreshToken(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessToken);
+        Task<List<ListUser>> GetAllUserAsync();
+        Task<AppUser> getByIdUser(string id);
+        Task<AppUser> UpdateUser(UpdateUser user);
+
+
     }
 }

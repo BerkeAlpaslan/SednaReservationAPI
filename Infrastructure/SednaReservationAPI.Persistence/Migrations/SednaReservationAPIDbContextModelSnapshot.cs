@@ -22,36 +22,6 @@ namespace SednaReservationAPI.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("HotelRoom", b =>
-                {
-                    b.Property<Guid>("HotelsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("RoomsId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("HotelsId", "RoomsId");
-
-                    b.HasIndex("RoomsId");
-
-                    b.ToTable("HotelRoom");
-                });
-
-            modelBuilder.Entity("HotelRoomType", b =>
-                {
-                    b.Property<Guid>("HotelsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("RoomTypesId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("HotelsId", "RoomTypesId");
-
-                    b.HasIndex("RoomTypesId");
-
-                    b.ToTable("HotelRoomType");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -158,36 +128,6 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ReservationRoom", b =>
-                {
-                    b.Property<Guid>("ReservationsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("RoomsId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ReservationsId", "RoomsId");
-
-                    b.HasIndex("RoomsId");
-
-                    b.ToTable("ReservationRoom");
-                });
-
-            modelBuilder.Entity("ReservationRoomType", b =>
-                {
-                    b.Property<Guid>("ReservationsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("RoomTypesId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ReservationsId", "RoomTypesId");
-
-                    b.HasIndex("RoomTypesId");
-
-                    b.ToTable("ReservationRoomType");
-                });
-
             modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Customer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -221,15 +161,10 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("RoomId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
 
                     b.ToTable("Customers");
                 });
@@ -245,9 +180,6 @@ namespace SednaReservationAPI.Persistence.Migrations
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uuid");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
@@ -270,18 +202,22 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
-                    b.Property<float>("Star")
-                        .HasColumnType("real");
-
-                    b.Property<int>("StarRating")
+                    b.Property<int>("Star")
                         .HasColumnType("integer");
+
+                    b.Property<float>("StarRating")
+                        .HasColumnType("real");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("Id");
+                    b.Property<string>("standartRoomPrice")
+                        .HasColumnType("text");
 
-                    b.HasIndex("CustomerId");
+                    b.Property<string>("userId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Hotels");
                 });
@@ -320,8 +256,9 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("integer");
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -334,8 +271,8 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Gender")
-                        .HasColumnType("text");
+                    b.Property<bool?>("Gender")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -353,9 +290,6 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -382,6 +316,9 @@ namespace SednaReservationAPI.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
+                    b.Property<bool?>("isAdmin")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -406,9 +343,6 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
@@ -418,11 +352,14 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("HotelId")
+                        .HasColumnType("text");
+
                     b.Property<string>("PaymentMethod")
                         .HasColumnType("text");
 
-                    b.Property<int>("ReservationId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ReservationId")
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");
@@ -430,9 +367,10 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
 
-                    b.HasIndex("CustomerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Payments");
                 });
@@ -452,10 +390,7 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("DeletedDate")
@@ -463,9 +398,6 @@ namespace SednaReservationAPI.Persistence.Migrations
 
                     b.Property<string>("HotelId")
                         .HasColumnType("text");
-
-                    b.Property<Guid?>("HotelId1")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("RoomId")
                         .HasColumnType("text");
@@ -484,10 +416,6 @@ namespace SednaReservationAPI.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("HotelId1");
-
                     b.ToTable("Reservations");
                 });
 
@@ -503,42 +431,25 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("HotelId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("HotelId")
+                        .HasColumnType("text");
 
                     b.Property<float>("Rating")
                         .HasColumnType("real");
 
-                    b.Property<Guid?>("RoomId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("RoomTypeId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("HotelId");
-
-                    b.HasIndex("RoomId");
-
-                    b.HasIndex("RoomTypeId");
 
                     b.ToTable("Reviews");
                 });
@@ -570,14 +481,11 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("HotelId")
-                        .HasColumnType("integer");
+                    b.Property<string>("HotelId")
+                        .HasColumnType("text");
 
-                    b.Property<int>("RoomTypeId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid?>("RoomTypeId1")
-                        .HasColumnType("uuid");
+                    b.Property<string>("RoomTypeId")
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");
@@ -586,8 +494,6 @@ namespace SednaReservationAPI.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomTypeId1");
 
                     b.ToTable("Rooms");
                 });
@@ -622,36 +528,6 @@ namespace SednaReservationAPI.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RoomTypes");
-                });
-
-            modelBuilder.Entity("HotelRoom", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Hotel", null)
-                        .WithMany()
-                        .HasForeignKey("HotelsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Room", null)
-                        .WithMany()
-                        .HasForeignKey("RoomsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HotelRoomType", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Hotel", null)
-                        .WithMany()
-                        .HasForeignKey("HotelsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.RoomType", null)
-                        .WithMany()
-                        .HasForeignKey("RoomTypesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -703,128 +579,6 @@ namespace SednaReservationAPI.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ReservationRoom", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Reservation", null)
-                        .WithMany()
-                        .HasForeignKey("ReservationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Room", null)
-                        .WithMany()
-                        .HasForeignKey("RoomsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ReservationRoomType", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Reservation", null)
-                        .WithMany()
-                        .HasForeignKey("ReservationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.RoomType", null)
-                        .WithMany()
-                        .HasForeignKey("RoomTypesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Customer", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Room", null)
-                        .WithMany("Customers")
-                        .HasForeignKey("RoomId");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Hotel", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Customer", null)
-                        .WithMany("Hotels")
-                        .HasForeignKey("CustomerId");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Payment", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Customer", null)
-                        .WithMany("Payments")
-                        .HasForeignKey("CustomerId");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Reservation", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Customer", null)
-                        .WithMany("Reservations")
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Hotel", null)
-                        .WithMany("Reservations")
-                        .HasForeignKey("HotelId1");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Review", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Customer", null)
-                        .WithMany("Reviews")
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Hotel", null)
-                        .WithMany("Reviews")
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.Room", null)
-                        .WithMany("Reviews")
-                        .HasForeignKey("RoomId");
-
-                    b.HasOne("SednaReservationAPI.Domain.Entities.RoomType", null)
-                        .WithMany("Reviews")
-                        .HasForeignKey("RoomTypeId");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Room", b =>
-                {
-                    b.HasOne("SednaReservationAPI.Domain.Entities.RoomType", null)
-                        .WithMany("Rooms")
-                        .HasForeignKey("RoomTypeId1");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Customer", b =>
-                {
-                    b.Navigation("Hotels");
-
-                    b.Navigation("Payments");
-
-                    b.Navigation("Reservations");
-
-                    b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Hotel", b =>
-                {
-                    b.Navigation("Reservations");
-
-                    b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.Room", b =>
-                {
-                    b.Navigation("Customers");
-
-                    b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("SednaReservationAPI.Domain.Entities.RoomType", b =>
-                {
-                    b.Navigation("Reviews");
-
-                    b.Navigation("Rooms");
                 });
 #pragma warning restore 612, 618
         }

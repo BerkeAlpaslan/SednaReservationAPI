@@ -29,7 +29,8 @@ namespace SednaReservationAPI.Application.Features.Queries.Reservation.GetByIdRe
                 CheckIn = reservation.CheckIn,
                 CheckOut = reservation.CheckOut,
                 TotalPrice = reservation.TotalPrice,
-                Status = reservation.Status
+                Status = reservation.Status,
+                Deleted = reservation.Deleted,
             };
 
             return response;

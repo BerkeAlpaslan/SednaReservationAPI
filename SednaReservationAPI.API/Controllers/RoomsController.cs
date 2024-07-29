@@ -6,6 +6,7 @@ using SednaReservationAPI.Application.Features.Commands.Room.DeleteRoom;
 using SednaReservationAPI.Application.Features.Commands.Room.UpdateRoom;
 using SednaReservationAPI.Application.Features.Queries.Room.GetAllRoom;
 using SednaReservationAPI.Application.Features.Queries.Room.GetByIdRoom;
+using SednaReservationAPI.Application.Features.Queries.Room.GetRoomByHotelId;
 using SednaReservationAPI.Application.Repositories;
 
 namespace SednaReservationAPI.API.Controllers
@@ -59,6 +60,12 @@ namespace SednaReservationAPI.API.Controllers
         public async Task<IActionResult> updateRoom([FromBody] UpdateRoomCommandRequest updateRoomCommandRequest)
         {
             UpdateRoomCommandResponse response = await _mediator.Send(updateRoomCommandRequest);
+            return Ok(response);
+        }
+        [HttpGet("hotel/{hotelId}")]
+        public async Task<IActionResult> getRoomByHotel([FromRoute] GetRoomByHotelIdQueryRequest getRoomByHotelIdQueryRequest)
+        {
+            List<GetRoomByHotelIdQueryResponse> response = await _mediator.Send(getRoomByHotelIdQueryRequest);
             return Ok(response);
         }
     }

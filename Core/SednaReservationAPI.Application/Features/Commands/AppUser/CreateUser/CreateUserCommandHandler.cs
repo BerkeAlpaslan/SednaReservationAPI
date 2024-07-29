@@ -31,7 +31,9 @@ namespace SednaReservationAPI.Application.Features.Commands.AppUser.CreateAppUse
                 PasswordConfirm = request.PasswordConfirm,
                 Phone = request.Phone,
                 Age = request.Age,
-                Gender = request.Gender
+                Gender = request.Gender,
+                IsAdmin = false,
+                
             });
 
             return new()

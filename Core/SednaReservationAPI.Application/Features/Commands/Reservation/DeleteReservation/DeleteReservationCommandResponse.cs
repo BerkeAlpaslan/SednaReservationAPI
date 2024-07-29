@@ -8,5 +8,7 @@ namespace SednaReservationAPI.Application.Features.Commands.Reservation.DeleteRe
 {
     public class DeleteReservationCommandResponse
     {
+        public bool Success { get; set; }
+        public string? Message { get; set; }
     }
 }

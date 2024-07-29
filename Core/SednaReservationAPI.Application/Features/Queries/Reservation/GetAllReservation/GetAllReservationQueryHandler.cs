@@ -29,7 +29,8 @@ namespace SednaReservationAPI.Application.Features.Queries.Reservation.GetAllRes
                   CheckIn = r.CheckIn,
                   CheckOut = r.CheckOut,
                   TotalPrice = r.TotalPrice,
-                  Status = r.Status
+                  Status = r.Status,
+                  Deleted = r.Deleted
               })
               .ToList();
 

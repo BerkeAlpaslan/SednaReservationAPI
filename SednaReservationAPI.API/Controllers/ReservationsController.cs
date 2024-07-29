@@ -6,6 +6,8 @@ using SednaReservationAPI.Application.Features.Commands.Reservation.DeleteReserv
 using SednaReservationAPI.Application.Features.Commands.Reservation.UpdateReservation;
 using SednaReservationAPI.Application.Features.Queries.Reservation.GetAllReservation;
 using SednaReservationAPI.Application.Features.Queries.Reservation.GetByIdReservation;
+using SednaReservationAPI.Application.Features.Queries.Reservation.GetHotelByIdReservation;
+using SednaReservationAPI.Application.Features.Queries.Reservation.GetReservationByUserId;
 using SednaReservationAPI.Application.Repositories;
 
 namespace SednaReservationAPI.API.Controllers
@@ -58,6 +60,20 @@ namespace SednaReservationAPI.API.Controllers
         public async Task<IActionResult> updateReservation([FromBody] UpdateReservationCommandRequest updateReservationCommandRequest)
         {
             UpdateReservationCommandResponse response = await _mediator.Send(updateReservationCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpGet("hotel/{hotelId}")]
+        public async Task<IActionResult> getHotelByReservations([FromRoute] GetHotelByIdReservationQueryRequest getHotelByIdReservationQueryRequest)
+        {
+            List<GetHotelByIdReservationQueryResponse> response = await _mediator.Send(getHotelByIdReservationQueryRequest);
+            return Ok(response);
+        }
+
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> getReservationByUserId([FromRoute] GetReservationByUserIdQueryRequest getReservationByUserIdQueryRequest)
+        {
+            List<GetReservationByUserIdQueryResponse> response = await _mediator.Send(getReservationByUserIdQueryRequest);
             return Ok(response);
         }
     }

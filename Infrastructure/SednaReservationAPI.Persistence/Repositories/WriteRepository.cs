@@ -62,5 +62,7 @@ namespace SednaReservationAPI.Persistence.Repositories
         }
         public async Task<int> SaveAsync()
             => await _context.SaveChangesAsync();
+        public async Task<float> SaveAsync2()
+         => await _context.SaveChangesAsync();
     }
 }

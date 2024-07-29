@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SednaReservationAPI.Application.Features.Commands.AppUser.UpdateAppUser
+namespace SednaReservationAPI.Domain.Entities
 {
-    public class UpdateAppUserCommandResponse
+    public class cardModel
     {
+
     }
 }

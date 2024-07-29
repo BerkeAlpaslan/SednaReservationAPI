@@ -16,7 +16,6 @@ namespace SednaReservationAPI.Domain.Entities
         public DateTime CheckOut { get; set; }
         public decimal TotalPrice { get; set; }
         public string? Status { get; set; }
-        public ICollection<Room>? Rooms { get; set; }
-        public ICollection<RoomType>? RoomTypes {  get; set; } 
+        public bool? Deleted { get; set; }
     }
 }

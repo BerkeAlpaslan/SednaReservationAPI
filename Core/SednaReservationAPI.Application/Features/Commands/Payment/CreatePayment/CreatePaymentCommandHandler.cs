@@ -23,8 +23,11 @@ namespace SednaReservationAPI.Application.Features.Commands.Payment.CreatePaymen
 
             {
                 ReservationId = request.ReservationId,
+                HotelId = request.HotelId,
+                UserId = request.UserId,
                 Amount = request.Amount,
                 Status = request.Status,
+              
                 PaymentMethod = request.PaymentMethod,
                 Date = DateTime.UtcNow,
             });
