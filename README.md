@@ -1,1 +1,1 @@
-Please Uncheck "Refresh Token" and "Redresh Token Expiration Date" from your Database Manager before test it
+# Stable Release ASP.NET API of Summer Practice Internship Project "SednaReservation" Hotel Reservation System 
