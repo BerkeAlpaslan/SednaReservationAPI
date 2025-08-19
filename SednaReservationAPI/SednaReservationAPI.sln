@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SednaReservationAPI.Persist
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4A6B9AB5-2ED6-47B1-8FA9-E1431535E773}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SednaReservationAPI.API", "SednaReservationAPI.API\SednaReservationAPI.API.csproj", "{FC5D80F1-A21A-4579-B863-6998B2ACBAA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SednaReservationAPI.API", "Presentation\SednaReservationAPI.API\SednaReservationAPI.API.csproj", "{FC5D80F1-A21A-4579-B863-6998B2ACBAA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

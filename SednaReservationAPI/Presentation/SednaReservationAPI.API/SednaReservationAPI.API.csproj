@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\SednaReservationAPI.Application\SednaReservationAPI.Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\SednaReservationAPI.Infrastructure\SednaReservationAPI.Infrastructure.csproj" />
-    <ProjectReference Include="..\Infrastructure\SednaReservationAPI.Persistence\SednaReservationAPI.Persistence.csproj" />
+    <ProjectReference Include="..\..\Core\SednaReservationAPI.Application\SednaReservationAPI.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\SednaReservationAPI.Infrastructure\SednaReservationAPI.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\SednaReservationAPI.Persistence\SednaReservationAPI.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
